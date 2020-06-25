@@ -1,0 +1,7 @@
+<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
+    <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
+    <main class="page-content">       
+        <router-outlet></router-outlet>
+    </main>
+</div>

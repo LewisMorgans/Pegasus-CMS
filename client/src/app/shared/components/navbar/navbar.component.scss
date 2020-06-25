@@ -1,0 +1,19 @@
+$bg-colour : #35495E;
+$colour: #bdbdbd;
+$content: #5cb85c;
+
+.nav-bg {
+    background-color: $bg-colour;
+
+    .header {
+        color: $colour
+    }
+
+    .toggle {
+        color: $colour
+    }
+
+    .menuIcon {
+        color: $content;
+    }
+}

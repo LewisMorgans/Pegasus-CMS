@@ -1,0 +1,85 @@
+<div class="container-fluid wrapper mb-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto buttons text-center">
+      <i data-toggle="modal" data-target="#exampleModal" class="fas fa-plus-circle" style="float: right"></i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-lg-10 mb-4 mx-auto">
+      <div id="tableWrapper" class="card">
+        <div class="card-body">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+          <div>
+            <table mat-table [dataSource]="dataSource" matSort>
+              <!-- ID Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+              </ng-container>
+              <!-- Progress Column -->
+              <ng-container matColumnDef="progress">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+                <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+              </ng-container>
+              <!-- Color Column -->
+              <ng-container matColumnDef="color">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+                <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+              </ng-container>
+              <!-- Edit Column -->
+              <ng-container matColumnDef="Edit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                <td mat-cell *matCellDef="let row"> X </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[15, 30, 50, 75]"></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade2" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content customModal">
+      <div class="modal-body">
+        
+        <!-- <form [formGroup]="demoForm">
+          <div formArrayName="demoArray" 
+             *ngFor="let arrayItem of arrayItems; let i=index">
+             <input [formControlName]="i"> 
+             <label>{{arrayItem.title}}</label>
+          </div>
+       </form> -->
+
+       <form [formGroup]="demoForm">
+        <div class="form-row" formArrayName="demoArray" >
+          <div class="form-group col-md-8 mx-auto mb-2" *ngFor="let arrayItem of arrayItems; let i = index">
+            <div class="mb-2" >
+                <input type="text" class="form-control" placeholder="{{arrayItem.title}}" [formControlName]="i">
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <i class="fas fa-times-circle btnClose mr-auto" data-dismiss="modal" aria-label="Close"></i>
+        <i class="fas fa-check-circle btns ml-auto" (click)="logForm(demoForm)"></i>
+      </div>
+    </div>
+  </div>
+</div>
